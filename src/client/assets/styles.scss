@@ -1,0 +1,234 @@
+$color1: #8ecae6;
+$color2: rgb(71, 169, 215);
+$color3: #023047;
+$color4: #ffb703;
+$color5: #fb8500;
+
+// Import Material UI font
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
+body {
+    background-color: $color1;
+    font-family: "Roboto", sans-serif;
+}
+
+.contentBox {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    margin: auto;
+    width: 1000px;
+
+    h1 {
+        font-size: 60px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+}
+
+.login-input {
+    width: 500px;
+    height: 50px;
+    border-radius: 30px;
+    margin: auto;
+}
+
+.gameContent {
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.lyrics {
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    background-color: none;
+    p {
+        font-size: 25px;
+        line-height: 1.6;
+    }
+}
+
+.login-button {
+    background-color: darken($color2, 7%);
+    text-decoration: none;
+    border: 3px darken($color1, 50%);
+    border-radius: 27px;
+    margin: 10px;
+    font-size: 16px;
+    height: 50px;
+    width: 180px;
+    font-family: "Roboto", sans-serif;
+}
+
+.login-button:hover {
+    cursor: pointer;
+    background-color: rgb(235, 37, 91);
+}
+
+.buttons:visited {
+    text-decoration: none;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.imagecontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin: 50px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        margin: 20px;
+        padding-left: 20px;
+    }
+}
+
+input {
+    border: none;
+}
+
+.start-game {
+    align-items: center;
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 18px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.start-game:active,
+.start-game:hover {
+    outline: 0;
+}
+
+.start-game span {
+    background-color: rgb(5, 6, 45);
+    padding: 16px 24px;
+    border-radius: 6px;
+    width: 100%;
+
+    transition: 300ms;
+}
+
+.start-game:hover span {
+    background: none;
+}
+
+.start-game:active {
+    transform: scale(0.9);
+}
+
+.guess-button {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 7px;
+    border: 1px solid rgb(61, 106, 255);
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
+.guess-button:hover {
+    background: rgb(61, 106, 255);
+    box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+.guess-button:hover::before {
+    -webkit-animation: sh02 0.5s 0s linear;
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
+}
+
+.guess-button::before {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+    from {
+        opacity: 0;
+        left: 0%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        left: 100%;
+    }
+}
+
+.guess-button:active {
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+}
