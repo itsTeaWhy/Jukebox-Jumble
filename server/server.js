@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 
 app.use(express.json());
 const MONGO_URI =
-  'mongodb+srv://iterationDB:iterationDB@cluster0.8frqam3.mongodb.net/?retryWrites=true&w=majority';
+  'mongodb+srv://slava:mypassword11@cluster0.l4bdt36.mongodb.net/test';
 
 mongoose
   .connect(MONGO_URI, {
@@ -17,7 +17,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     // sets the name of the DB that our collections are part of
-    dbName: 'lyric-genius-project',
+    dbName: 'jukebox',
   })
   // .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
