@@ -1,10 +1,11 @@
-const path = require("path");
-const express = require("express");
-const apiRoutes = require("./routes/apiRoutes");
-const userRoutes = require("./routes/userRoutes");
+const path = require('path');
+const express = require('express');
+const apiRoutes = require('./routes/apiRoutes');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const mongoose = require('mongoose');
-// const cors = require('cors');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 app.use(express.json());
 const MONGO_URI =
@@ -21,44 +22,44 @@ mongoose
   // .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
-app.use(express.static(path.join(__dirname, "./../build")));
+app.use(express.static(path.join(__dirname, './../build')));
 app.use(cookieParser());
 app.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000",
-    })
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+  })
 );
 
-app.use("/api", apiRoutes);
-app.use("/users", userRoutes);
+app.use('/api', apiRoutes);
+app.use('/users', userRoutes);
 //
 //
 //
 //
 //
 app.use((err, req, res, next) => {
-    const defaultErr = {
-        log: "Express error handler caught unknown middleware error",
-        status: 400,
-        message: { err: "An error occurred" },
-    };
-    const errorObj = {
-        ...defaultErr,
-        log: err.log,
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = {
+    ...defaultErr,
+    log: err.log,
 
     message: err.message,
   };
 
-    res.status(errorObj.status).json(errorObj.message);
-    //   res.locals.message = err.message;
-    //   console.log('ERROR: ', err);
-    //   const errorStatus = err.status
-    //  || 500;
-    //   return res.status(errorStatus).send(res.locals.message);
+  res.status(errorObj.status).json(errorObj.message);
+  //   res.locals.message = err.message;
+  //   console.log('ERROR: ', err);
+  //   const errorStatus = err.status
+  //  || 500;
+  //   return res.status(errorStatus).send(res.locals.message);
 });
 app.listen(5001, () => {
-    console.log("Server is running on port 5001");
+  console.log('Server is running on port 5001');
 });
 
 function createServer() {

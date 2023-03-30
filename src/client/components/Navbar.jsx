@@ -3,8 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/music-logo.png";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import LogInGoogle from "./LogInGoogle";
-import { GoogleLogout } from "react-google-login";
+// import LogInGoogle from "./LogInGoogle";
+// import { GoogleLogout } from "react-google-login";
 // import { GoogleLogin } from "react-google-login";
 import {
     AppBar,
