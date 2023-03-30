@@ -4,11 +4,10 @@ const apiRoutes = require('./routes/apiRoutes');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 const mongoose = require('mongoose');
-// const cors = require('cors');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './../build')));
-
 const MONGO_URI =
   'mongodb+srv://iterationDB:iterationDB@cluster0.8frqam3.mongodb.net/?retryWrites=true&w=majority';
 
@@ -23,12 +22,14 @@ mongoose
   // .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: 'http://localhost:5001',
-//   })
-// );
+app.use(express.static(path.join(__dirname, './../build')));
+app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+  })
+);
 
 app.use('/api', apiRoutes);
 app.use('/users', userRoutes);

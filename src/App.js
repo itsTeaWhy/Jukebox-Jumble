@@ -1,45 +1,53 @@
 import "./App.css";
-import React from "react";
-import Signup from './Signup'
-import Rules from "./Rules";
-import Game from "./Game";
-import About from "./About";
-import Login from "./Login";
+import React, { useState, useEffect } from "react";
+import Navbar from "./client/components/Navbar";
+import Signup from "./client/pages/Signup";
+import Rules from "./client/pages/Rules";
+import Game from "./client/pages/Game";
+import About from "./client/pages/About";
+import Login from "./client/pages/Login";
+import Cookies from "js-cookie";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
+    createBrowserRouter,
+    RouterProvider,
+    Routes,
+    Route,
+    Link,
 } from "react-router-dom";
-
-const routes = createBrowserRouter([
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/play",
-    element: <Game />,
-  },
-  {
-    path: "/rules",
-    element: <Rules/>
-  }, {
-    path: "/signup",
-    element: <Signup />
-  }
-]);
-
 function App() {
-  return (
-    <div className="App">
-      <RouterProvider router={routes} />
-    </div>
-  );
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [isInitialCheckDone, setIsInitialCheckDone] = useState(false);
+    useEffect(() => {
+        const checkLoggedInStatus = () => {
+            const loggedIn = Cookies.get("loggedIn");
+            console.log(loggedIn);
+            if (loggedIn) {
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
+            }
+            setIsInitialCheckDone(true);
+        };
+
+        checkLoggedInStatus();
+    }, []);
+    return (
+        <div className="App">
+            <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            <Routes>
+                <Route path="/about" element={<About />} />
+                <Route
+                    path="/login"
+                    element={
+                        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+                    }
+                />
+                <Route path="/" element={<Game />} />
+                <Route path="/rules" element={<Rules />} />
+                <Route path="/signup" element={<Signup />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
