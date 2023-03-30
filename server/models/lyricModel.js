@@ -1,28 +1,14 @@
-const mongoose = require('mongoose');
-
-const MONGO_URI =
-  'mongodb+srv://Anna:lyricgeniusproject@mernapp.r9sezjx.mongodb.net/test';
-
-mongoose
-  .connect(MONGO_URI, {
-    // options for the connect method to parse the URI
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    // sets the name of the DB that our collections are part of
-    dbName: 'lyric-genius-project',
-  })
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch((err) => console.log(err));
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
 const songSchema = new Schema({
-  name: String,
+  title: String,
   artist: String,
   lyrics: String,
   trackId: String,
 });
 
-const Song = mongoose.model('song', songSchema);
+const Song = mongoose.model("song", songSchema);
 
 module.exports = Song;
